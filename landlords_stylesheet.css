@@ -8,55 +8,62 @@
     border-bottom: solid;
     border-width: 2px;
     border-color: lightgray;
-    height: 10vw;
 }
 
 .logo {
-    height: 80%;
-    width: auto;
+    width: 80%;
+    max-height: 150px;
+    max-width: 150px;
     border-style: solid;
     border-width: 2px;
     border-color: lightgray;
-    position: absolute;
-    top: 50%;
-    left: 2%;
-    -moz-transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
 }
 
 .landlord-name {
     margin-top: 2%;
     margin-left: 2%;
-    font-size: 2vw
+    font-size: 30px
+}
+
+.landlord-description {
+    margin-left: 2%;
+    font-size: 15px
+}
+
+.avg-rating {
+    color: orange;
+    margin-right: 2%;
+}
+
+.rating-stars {
+    vertical-align: middle;
+}
+
+.landlord-phone-address {
+    font-size: 15px
+}
+
+.chevron-icon {
+    color: dodgerblue;
+    font-size: 15px
+}
+
+.see-details-and-properties {
+    font-size: 15px;
+}
+
+.icon-container {
+    text-align: center
 }
 
 .landlord-icon {
     color: dodgerblue;
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    -moz-transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
-    font-size: 3vw
+    font-size: 30px
 }
 
 .icon-text {
     display: block;
-    font-size: 1vw;
-    text-align: center
+    font-size: 15px;
+    margin-top: 0.5vw
 }
-
-/* .go-to-website {
-    -moz-transform: translateX(24%);
-    -webkit-transform: translateX(24%);
-    transform: translateX(24%);
-}
-
-.view-properties-on-map {
-    -moz-transform: translateX(-5%);
-    -webkit-transform: translateX(-5%);
-    transform: translateX(-5%);
-} */
 
