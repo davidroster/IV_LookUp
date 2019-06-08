@@ -21,6 +21,9 @@
 
   <!-- Custom styles for this template -->
   <link href="justified-nav.css" rel="stylesheet">
+
+  <!-- JavaScript file-->
+  <script type="text/JavaScript" src="landlords.js"></script>
 </head>
 
 <body>
@@ -57,16 +60,16 @@
 
     <div class="col-sm-12">
       <div class="row first-item"></div>
-      <div class="row landlord-item">
+      <div class="row landlord-item" id="landlord-item">
         <div class="col-sm-2 my-auto">
-          <img src="wolfe_and_associates.png" class="logo">
+          <img src="wolfe_and_associates.png" class="logo" id="logo">
         </div>
         <div class="col-sm-6">
-          <h2 class="landlord-name">Wolfe and Associates</h2>
+          <h2 class="landlord-name" id="landlord-name">Wolfe and Associates</h2>
           <div class="landlord-description">
             <div class="row">
               <div class="col-sm-12">
-                <span class="avg-rating">0.0</span>
+                <span class="avg-rating" id="avg-rating">0.0</span>
                 <span class="review-block-rate my-auto">
                   <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
@@ -87,26 +90,26 @@
               </div>
             </div>
             <div class="row" style="margin-top: 0.5vw">
-              <div class="col-sm-12 landlord-phone-address">
+              <div class="col-sm-12 landlord-phone-address" id="landlord-phone-address">
                 (805) 964-6770 - 173 Chapel St, Santa Barbara, CA 93111
               </div>
             </div>
             <div class="row" style="margin-top: 0.5vw; margin-bottom: 1vw">
               <div class="col-sm-12 my-auto chevron-icon">
                 <i class="fa fa-info-circle" aria-hidden="true" style="margin-right: 2%"></i>
-                <span class="my-auto see-details-and-properties">See Details and Properties</span>
+                <span class="my-auto see-details-and-properties" id="see-details-and-properties">See Details and Properties</span>
               </div>
             </div>
           </div>
         </div>
         <div class="col-sm-2 my-auto" style="text-align: center">
-          <a href="URL-HERE" title="Go to Website" target="_blank" rel="nofollow"><i
+          <a href="URL-HERE" title="Go to Website" target="_blank" rel="nofollow" id="go-to-website"><i
               class="fa fa-3x fa-globe landlord-icon"></i>
             <div class="icon-text">Go to Website</div>
           </a>
         </div>
         <div class="col-sm-2 my-auto" style="text-align: center">
-          <a href="URL-HERE" title="View Properties on Map" target="_blank" rel="nofollow"><i
+          <a href="map.html" title="View Properties on Map" target="_blank" rel="nofollow" id="view-properties-on-map"><i
               class="fa fa-3x fa-map landlord-icon"></i>
             <div class="icon-text">View Properties on Map</div>
           </a>
