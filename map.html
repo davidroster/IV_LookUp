@@ -15,10 +15,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="icon" href="../../favicon.ico">
-  <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3kze-eqtU9lAppo8qa87F7neRYzf6EZ8&callback=myMap"></script>
- 
-  <script src="map-script.js" type="text/javascript"></script>
+
   <title>IV Lookup</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <!-- <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/"> -->
@@ -30,10 +27,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Custom styles for this template -->
   <link href="justified-nav.css" rel="stylesheet">
+
+  <!-- icons library-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
 <body>
-
 
   <div class="container">
 
@@ -60,40 +60,42 @@
       </div>
     </nav>
 
+    <div class="jumbotron">
+        <h1>Welcome to Maps!</h1>
+        <p class="lead">Here you can explore around Isla Vista and click on houses to learn more about them!
+         </p>
+      </div>
 
     <div class="grid">
       <!--  Map -->
       <div class="column">
         <div class="container ">
           <div class="row ">
-            <div id="googleMap" class="map-container " style="width:100%;height:690px;"></div>
-            <script> myMap();</script>
+            <div id="googleMap" class="map-container " style="width:100%;height:600px;"></div>
+          </div>
+          <div class="row">
+            <div id="graph">
+              <div id="ratingsGraph" style="width: 900px; height: 300px;" hidden></div>
+            </div>
+          </div>
+          <div id="reviews">
           </div>
         </div>
       </div>
       <!--  Sidebar Filter/Search bar-->
-      <div class="column sidebar mt-1">
+      <div class="column sidebar ">
         <div class="search-container">
-            <div class="input-group my-auto">
-              <input class="form-control" id="search-input" type="text" placeholder="Search By Landlord"
-                name="landlordName">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary" id="submit-search-btn" type="button"
-                  onclick="getLandlordInformation()"><i class=" fa fa-search"></i></button>
-              </div>
+          <div class="input-group my-auto">
+            <input class="form-control" id="search-input" type="text" placeholder="Search By Landlord"
+              name="landlordName">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" id="submit-search-btn" type="button"
+                onclick="getLandlordInformation()"><i class=" fa fa-search"></i></button>
             </div>
+          </div>
         </div>
       </div>
     </div>
-
-    <!--
-  
--->
-
-
-
-   
-
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -107,6 +109,16 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"></script>
+
+    <!-- Graph Scripts-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3kze-eqtU9lAppo8qa87F7neRYzf6EZ8&callback=myMap"></script>
+
+    <script src="map-script.js" type="text/javascript"></script>
+    <!-- library to use templated html components-->
+    <script src="mustache.min.js"></script>
+
 </body>
 
 </html>
