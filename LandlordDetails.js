@@ -13,7 +13,7 @@ var properties = [
 ];
 
 // Test data. Input for GenerateReviewList() must be in this format
-var reviews = [
+var LandlordReviews = [
     { name: 'Kari', date: new Date(1997, 5, 5), rating: 5, title: 'I love tacos', review: 'Tacos are just great, like you can have steak, carnitas, or chicken, and you can put whatever you want on them. Like you can throw some cheese, pico de gallo, onions, and cilantro on that bitch, and its delicious.' },
     { name: 'Scotty', date: new Date(1995, 0, 9), rating: 5, title: 'Well I love icecream', review: 'I think icecream is the best. There are so many flavors, like chocolate, strawberry, vanilla, pistachio, caramel, and my personal fave, half-baked. You can have ice cream by itself or in a cake, and itll be amazeballs!!' },
     { name: 'Ahsan', date: new Date(1996, 11, 22), rating: 4, title: 'Chocolate chip cookies are the best tho', review: 'They are so simple, but chocolate chip cookies are always a crowd favorite. You can celebrate any occasion and eat them, or cry after a breakup and eat them. Theyre hella versitile and thats why theyre the best.' }
@@ -76,6 +76,7 @@ function GeneratePropertyList(properties) {
         clone_property_item.id = "property-item-" + i;
         clone_property_item.querySelectorAll('[id="property-thumbnail"]')[0].src = properties[i].image;
         clone_property_item.querySelectorAll('[id="property-caption"]')[0].innerHTML = properties[i].address;
+        clone_property_item.querySelectorAll('[id="property-link"]')[0].href = "PropertyDetails.html?addr='" + properties[i].address + "'";
 
         // If i is a multiple of 4, append the new carousel item
         if (i % 4 == 0) {
@@ -327,11 +328,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
     GeneratePropertyList(properties);
 
     // Generate list of reviews
-    GenerateReviewList(reviews);
+    GenerateReviewList(LandlordReviews);
 
     // Set the landlord name
     document.getElementById('landlord-name').innerHTML = landlord_name;
     // SET INFORMATION SECTION
+    document.getElementById('view-properties-on-map').href = "map.html?type='landlord'&value='" + landlord_name + "'";
     // SET properties LIST
     // SET reviews LIST
 

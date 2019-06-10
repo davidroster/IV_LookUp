@@ -39,11 +39,12 @@ function GenerateLandlordList(landlords) {
             }
         }
 
-        // Fill the rating, phone number, address, and website link
+        // Fill the rating, link to details page, phone number, address, and website link
         clone.querySelectorAll('[id="avg-rating"]')[0].innerHTML = rating;
         clone.querySelectorAll('[id="link-to-details"]')[0].href = "LandlordDetails.html?landlord_name='" + landlords[i].name + "'";
         clone.querySelectorAll('[id="landlord-phone-address"]')[0].innerHTML = landlords[i].phone + ' - ' + landlords[i].address;
         clone.querySelectorAll('[id="go-to-website"]')[0].href = landlords[i].website;
+        clone.querySelectorAll('[id="view-properties-on-map"]')[0].href = "map.html?type='landlord'&value='" + landlords[i].name + "'";
 
         // Append new list item to list
         original.parentNode.appendChild(clone);
