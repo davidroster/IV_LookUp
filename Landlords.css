@@ -4,7 +4,7 @@
     text-align: center;
 }
 
-.first-item {
+#first-item {
     border-bottom: solid;
     border-width: 2px;
     border-color: lightgray;
@@ -16,7 +16,7 @@
     border-color: lightgray;
 }
 
-.logo {
+#logo {
     width: 80%;
     max-height: 150px;
     max-width: 150px;
@@ -25,27 +25,23 @@
     border-color: lightgray;
 }
 
-.landlord-name {
+#landlord-name {
     margin-top: 2%;
     margin-left: 2%;
     font-size: 30px
 }
 
-.landlord-description {
+#landlord-description {
     margin-left: 2%;
     font-size: 15px
 }
 
-.avg-rating {
+#avg-rating {
     color: orange;
     margin-right: 2%;
 }
 
-.rating-stars {
-    vertical-align: middle;
-}
-
-.landlord-phone-address {
+#landlord-phone-address {
     font-size: 15px
 }
 
@@ -54,12 +50,8 @@
     font-size: 15px
 }
 
-.see-details-and-properties {
+#see-details-and-properties {
     font-size: 15px;
-}
-
-.icon-container {
-    text-align: center
 }
 
 .landlord-icon {
