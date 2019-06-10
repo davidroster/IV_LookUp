@@ -26,6 +26,7 @@ var reviewTemplate =
   <div class="review-block-description">{{reviewBody}}</div>
 </div>
 </div>
+<hr>
 `
 var reviewTest = {
     "imageUrl": "http://dummyimage.com/60x60/666/ffffff&text=No+Image",
@@ -96,7 +97,7 @@ function showMarkers() {
         markers[i] = new google.maps.Marker({
             position: myLatLng,
             map: map,
-            title: properties[i].title
+            title: properties[i].title,
         });
         // add marker onclick listner
         markers[i].addListener('click', function () {
@@ -150,6 +151,8 @@ function drawRatingsGraph() {
 
     var options = {
         title: "Landlord Ratings Over Time",
+        backgroundColor: '#fcfdff',
+        is3D: true,
         format: 'none',
         legend: 'none',
         hAxis: {
