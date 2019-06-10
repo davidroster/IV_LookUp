@@ -73,6 +73,7 @@ function getLandlordInformation(searchForm) {
             document.getElementById("reviews").innerHTML += reviewHTML;
         }
         //CREATE GRAPH 
+        document.getElementById("graph").hidden = false;
         document.getElementById("ratingsGraph").hidden = false;
         google.charts.load('current', { packages: ['corechart', 'line'] });
         google.charts.setOnLoadCallback(drawRatingsGraph);
