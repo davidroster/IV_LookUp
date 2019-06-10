@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>IV Lookup</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/"> -->
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="LandlordDetails.css" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="justified-nav.css" rel="stylesheet">
+
+    <!-- For the Properties Scroller -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script type="text/JavaScript" src="LandlordDetails.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <nav class="site-header sticky-top py-1">
+            <div class="container d-flex flex-column flex-md-row justify-content-between">
+                <a class="py-2" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="d-block mx-auto">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="14.31" y1="8" x2="20.05" y2="17.94"></line>
+                        <line x1="9.69" y1="8" x2="21.17" y2="8"></line>
+                        <line x1="7.38" y1="12" x2="13.12" y2="2.06"></line>
+                        <line x1="9.69" y1="16" x2="3.95" y2="6.06"></line>
+                        <line x1="14.31" y1="16" x2="2.83" y2="16"></line>
+                        <line x1="16.62" y1="12" x2="10.88" y2="21.94"></line>
+                    </svg>
+                </a>
+                <a class="py-2 d-none d-md-inline-block" href="index.html">Home <span
+                        class="sr-only">(current)</span></a>
+                <a class="py-2 d-none d-md-inline-block" href="map.html">Isla Vista Tour</a>
+                <a class="py-2 d-none d-md-inline-block" href="Landlords.html">Landlords</a>
+                <a class="py-2 d-none d-md-inline-block" href="AddAReview.html">Add a Review</a>
+                <a class="py-2 d-none d-md-inline-block" href="Support.html">Support</a>
+            </div>
+        </nav>
+
+        <div class="jumbotron">
+            <div class="row" style="padding:0">
+                <div class="col-sm-3 my-auto">
+                    <img id="logo" src="wolfe_and_associates.png">
+                </div>
+                <div class="col-sm-9 my-auto">
+                    <h1 id="landlord-name"></h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12">
+            <div class="row row-item">
+                <div class="col-sm-8">
+                    <h2 class="row">Information</h2>
+                    <div class="row phone-row">
+                        <span><strong>Phone:</strong></span>
+                        <span id="landlord-phone">(805) 964-6770</span>
+                    </div>
+                    <div class="row address-row">
+                        <span><strong>Headquarters Address:</strong></span>
+                        <span id="landlord-address">173 Chapel St, Santa Barbara, CA 93111</span>
+                    </div>
+                </div>
+                <div class="col-sm-2 my-auto" style="text-align: center">
+                    <a href="URL-HERE" title="Go to Website" target="_blank" rel="nofollow" id="go-to-website"><i
+                            class="fa fa-3x fa-globe landlord-icon"></i>
+                        <div class="icon-text">Go to Website</div>
+                    </a>
+                </div>
+                <div class="col-sm-2 my-auto" style="text-align: center">
+                    <a href="map.html" title="View Properties on Map" rel="nofollow"
+                        id="view-properties-on-map"><i class="fa fa-3x fa-map landlord-icon"></i>
+                        <div class="icon-text">View Properties on Map</div>
+                    </a>
+                </div>
+            </div>
+            <div class="row row-item">
+                <div class="col-sm-12">
+                    <h2 class="row" style="margin-top: 3%; margin-bottom: 4%">Properties</h2>
+                    <div id="demo" class="carousel slide row" data-ride="carousel"
+                        style="margin-bottom: 5%">
+
+                        <!-- Indicators -->
+                        <ul class="carousel-indicators">
+                            <li data-target="#demo" data-slide-to="0" class="active" id="indicator0"></li>
+                        </ul>
+
+                        <!-- The slideshow -->
+                        <div class="container carousel-inner no-padding">
+                            <div class="carousel-item active" id="carousel-item">
+                                <div class="col-xs-3 col-sm-3 col-md-3 property-item" id="property-item"
+                                    style="text-align: center">
+                                    <img id="property-thumbnail" src="house1.jpg">
+                                    <p id="property-caption">807 Embarcadero del Norte</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Left and right controls -->
+                        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </a>
+                        <a class="carousel-control-next" href="#demo" data-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-item">
+                <div class="col-sm-12">
+                    <h2 class="row" style="margin-top: 3%; margin-bottom: 3%;">Ratings and Reviews</h2>
+                    <div class="row">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-4">
+                            <div class="rating-block" style="text-align: center">
+                                <h4>Average user rating</h4>
+                                <h2 class="bold padding-bottom-7" id="rating-num">4.3 <small>/ 5</small></h2>
+                                <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align" id="avg_star0">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align" id="avg_star1">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align" id="avg_star2">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align" id="avg_star3">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align" id="avg_star4">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" style="text-align: center">
+                            <h4>Rating breakdown</h4>
+                            <div class="pull-left">
+                                <div class="pull-left" style="width:35px; line-height:1;">
+                                    <div style="height:9px; margin:5px 0;">5 <span
+                                            class="glyphicon glyphicon-star"></span></div>
+                                </div>
+                                <div class="pull-left" style="width:180px;">
+                                    <div class="progress" style="height:9px; margin:8px 0;">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" id="num-fives-bar"
+                                            aria-valuenow="5" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                            <span class="sr-only">80% Complete (danger)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pull-right" id="num-fives" style="margin-left:10px;">1</div>
+                            </div>
+                            <div class="pull-left">
+                                <div class="pull-left" style="width:35px; line-height:1;">
+                                    <div style="height:9px; margin:5px 0;">4 <span
+                                            class="glyphicon glyphicon-star"></span></div>
+                                </div>
+                                <div class="pull-left" style="width:180px;">
+                                    <div class="progress" style="height:9px; margin:8px 0;">
+                                        <div class="progress-bar progress-bar-primary" role="progressbar" id="num-fours-bar"
+                                            aria-valuenow="4" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                            <span class="sr-only">80% Complete (danger)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pull-right" id="num-fours" style="margin-left:10px;">1</div>
+                            </div>
+                            <div class="pull-left">
+                                <div class="pull-left" style="width:35px; line-height:1;">
+                                    <div style="height:9px; margin:5px 0;">3 <span
+                                            class="glyphicon glyphicon-star"></span></div>
+                                </div>
+                                <div class="pull-left" style="width:180px;">
+                                    <div class="progress" style="height:9px; margin:8px 0;">
+                                        <div class="progress-bar progress-bar-info" role="progressbar" id="num-threes-bar" aria-valuenow="3"
+                                            aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                            <span class="sr-only">80% Complete (danger)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pull-right" id="num-threes" style="margin-left:10px;">0</div>
+                            </div>
+                            <div class="pull-left">
+                                <div class="pull-left" style="width:35px; line-height:1;">
+                                    <div style="height:9px; margin:5px 0;">2 <span
+                                            class="glyphicon glyphicon-star"></span></div>
+                                </div>
+                                <div class="pull-left" style="width:180px;">
+                                    <div class="progress" style="height:9px; margin:8px 0;">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" id="num-twos-bar"
+                                            aria-valuenow="2" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                            <span class="sr-only">80% Complete (danger)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pull-right" id="num-twos" style="margin-left:10px;">0</div>
+                            </div>
+                            <div class="pull-left">
+                                <div class="pull-left" style="width:35px; line-height:1;">
+                                    <div style="height:9px; margin:5px 0;">1 <span
+                                            class="glyphicon glyphicon-star"></span></div>
+                                </div>
+                                <div class="pull-left" style="width:180px;">
+                                    <div class="progress" style="height:9px; margin:8px 0;">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" id="num-ones-bar"
+                                            aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                            <span class="sr-only">80% Complete (danger)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pull-right" id="num-ones" style="margin-left:10px;">0</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-7" style="margin-left: auto; margin-right: auto">
+                            <div class="review-block">
+                                <div class="row" id="original-review">
+                                    <div class="col-sm-3">
+                                        <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image"
+                                            class="img-rounded">
+                                        <div class="review-block-name" id="review-block-name"><a href="#">nktailor</a></div>
+                                        <div class="review-block-date" id="review-block-date">January 29, 2016<br />1 day ago</div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="review-block-rate" id="review-block-rate">
+                                            <button type="button" class="btn btn-warning btn-xs" id="star0"
+                                                aria-label="Left Align">
+                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-warning btn-xs" id="star1"
+                                                aria-label="Left Align">
+                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-warning btn-xs" id="star2"
+                                                aria-label="Left Align">
+                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-default btn-grey btn-xs" id="star3"
+                                                aria-label="Left Align">
+                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-default btn-grey btn-xs" id="star4"
+                                                aria-label="Left Align">
+                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                            </button>
+                                        </div>
+                                        <div class="review-block-title" id="review-block-title"><strong>this was nice in buy</strong></div>
+                                        <div class="review-block-description" id="review-block-description">this was nice in buy. this was nice in
+                                            buy. this was nice in buy. this was nice in buy this was nice in buy this
+                                            was nice in buy this was nice in buy this was nice in buy</div>
+                                    </div>
+                                </div>
+                                <hr />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</body>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+    integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+    crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+    integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+    crossorigin="anonymous"></script>
+<script src="../../dist/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+<script>
+    Holder.addTheme('thumb', {
+        bg: '#55595c',
+        fg: '#eceeef',
+        text: 'Thumbnail'
+    });
+</script>

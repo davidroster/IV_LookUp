@@ -1,0 +1,91 @@
+.jumbotron {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+#logo {
+    width: 70%;
+}
+
+.row-item {
+    border-bottom: solid;
+    border-width: 2px;
+    border-color: lightgray;
+}
+
+.phone-row {
+    margin-left: 2%;
+    margin-top: 3%;
+    margin-bottom: 3%
+}
+
+#landlord-phone {
+    margin-left: 2%
+}
+
+.address-row {
+    margin-left: 2%;
+    margin-bottom: 5%
+}
+
+#landlord-address {
+    margin-left: 2%
+}
+
+.landlord-icon {
+    color: dodgerblue;
+    font-size: 30px
+}
+
+.icon-text {
+    display: block;
+    font-size: 15px;
+    margin-top: 0.5vw
+}
+
+.col-md-3{
+    display: inline-block;
+    margin-left:-4px;
+}
+
+.col-md-3 img{
+    width: 70%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carousel-indicators li{
+    background-color: dodgerblue;
+}
+
+.carousel-indicators{
+    bottom: -30px;
+}
+  
+.carousel-control-prev-icon,
+.carousel-control-next-icon{
+    background-color: dodgerblue;
+    height: 80%
+}
+
+.carousel-control-prev-icon {
+    position: absolute;
+    left: 0
+}
+
+.carousel-control-next-icon {
+    position: absolute;
+    right: 0
+}
+  
+.no-padding{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.property-caption {
+    margin-bottom: 20%
+}
+

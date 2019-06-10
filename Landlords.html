@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../favicon.ico">
+
+  <title>IV Lookup</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <!-- <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/"> -->
+
+  <!-- Bootstrap core CSS -->
+  <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Icons -->
+  <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+  
+  <link href="Landlords.css" rel="stylesheet">
+  <link href="reviews_stylesheet.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="justified-nav.css" rel="stylesheet">
+
+  <!-- JavaScript file-->
+  <script type="text/JavaScript" src="Landlords.js"></script>
+</head>
+
+<body>
+
+  <div class="container">
+    <nav class="site-header sticky-top py-1">
+      <div class="container d-flex flex-column flex-md-row justify-content-between">
+        <a class="py-2" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="d-block mx-auto">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="14.31" y1="8" x2="20.05" y2="17.94"></line>
+            <line x1="9.69" y1="8" x2="21.17" y2="8"></line>
+            <line x1="7.38" y1="12" x2="13.12" y2="2.06"></line>
+            <line x1="9.69" y1="16" x2="3.95" y2="6.06"></line>
+            <line x1="14.31" y1="16" x2="2.83" y2="16"></line>
+            <line x1="16.62" y1="12" x2="10.88" y2="21.94"></line>
+          </svg>
+        </a>
+        <a class="py-2 d-none d-md-inline-block" href="index.html">Home <span class="sr-only">(current)</span></a>
+        <a class="py-2 d-none d-md-inline-block" href="map.html">Isla Vista Tour</a>
+        <a class="py-2 d-none d-md-inline-block" href="Landlords.html">Landlords</a>
+        <a class="py-2 d-none d-md-inline-block" href="AddAReview.html">Add a Review</a>
+        <a class="py-2 d-none d-md-inline-block" href="Support.html">Support</a>
+      </div>
+    </nav>
+
+    <div class="jumbotron">
+      <h1>Welcome to our Landlord List!</h1>
+      <p class="lead">Here you can browse rental companies and the properties they own!
+      </p>
+    </div>
+
+    <div class="col-sm-12">
+      <div class="row" id="first-item"></div>
+      <div class="row landlord-item" id="landlord-item">
+        <div class="col-sm-2 my-auto">
+          <img src="wolfe_and_associates.png" id="logo">
+        </div>
+        <div class="col-sm-6">
+          <h2 id="landlord-name">Wolfe and Associates</h2>
+          <div id="landlord-description">
+            <div class="row">
+              <div class="col-sm-12">
+                <span id="avg-rating">0.0</span>
+                <span class="review-block-rate my-auto">
+                  <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" id="star0">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" id="star1">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" id="star2">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align" id="star3">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align" id="star4">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                </span>
+              </div>
+            </div>
+            <div class="row" style="margin-top: 0.5vw">
+              <div class="col-sm-12" id="landlord-phone-address">
+                (805) 964-6770 - 173 Chapel St, Santa Barbara, CA 93111
+              </div>
+            </div>
+            <div class="row" style="margin-top: 0.5vw; margin-bottom: 1vw">
+              <a href="LandlordDetails.html" class="col-sm-12 my-auto chevron-icon" target="_blank" id="link-to-details">
+                <i class="fa fa-info-circle" aria-hidden="true" style="margin-right: 2%"></i>
+                <span id="see-details-and-properties">See Details and Properties</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-2 my-auto" style="text-align: center">
+          <a href="URL-HERE" title="Go to Website" target="_blank" rel="nofollow" id="go-to-website"><i
+              class="fa fa-3x fa-globe landlord-icon"></i>
+            <div class="icon-text">Go to Website</div>
+          </a>
+        </div>
+        <div class="col-sm-2 my-auto" style="text-align: center">
+          <a href="map.html" title="View Properties on Map" rel="nofollow" id="view-properties-on-map"><i
+              class="fa fa-3x fa-map landlord-icon"></i>
+            <div class="icon-text">View Properties on Map</div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <footer class="container py-5">
+      <div class="row">
+        <div class="col-12 col-md">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mb-2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="14.31" y1="8" x2="20.05" y2="17.94"></line>
+            <line x1="9.69" y1="8" x2="21.17" y2="8"></line>
+            <line x1="7.38" y1="12" x2="13.12" y2="2.06"></line>
+            <line x1="9.69" y1="16" x2="3.95" y2="6.06"></line>
+            <line x1="14.31" y1="16" x2="2.83" y2="16"></line>
+            <line x1="16.62" y1="12" x2="10.88" y2="21.94"></line>
+          </svg>
+          <small class="d-block mb-3 text-muted">&copy; 2019-2020</small>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Features</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Cool stuff</a></li>
+            <li><a class="text-muted" href="#">Random feature</a></li>
+            <li><a class="text-muted" href="#">Team feature</a></li>
+            <li><a class="text-muted" href="#">Stuff for developers</a></li>
+            <li><a class="text-muted" href="#">Another one</a></li>
+            <li><a class="text-muted" href="#">Last time</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Resources</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Resource</a></li>
+            <li><a class="text-muted" href="#">Resource name</a></li>
+            <li><a class="text-muted" href="#">Another resource</a></li>
+            <li><a class="text-muted" href="#">Final resource</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-md">
+          <h5>About</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Team</a></li>
+            <li><a class="text-muted" href="#">Locations</a></li>
+            <li><a class="text-muted" href="#">Privacy</a></li>
+            <li><a class="text-muted" href="#">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+
+  </div>
+
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+    integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+    crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+    integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+    crossorigin="anonymous"></script>
+  <script src="../../dist/js/bootstrap.min.js"></script>
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+
+  <script>
+    Holder.addTheme('thumb', {
+      bg: '#55595c',
+      fg: '#eceeef',
+      text: 'Thumbnail'
+    });
+  </script>
