@@ -181,7 +181,7 @@ function generateReviewList(landlordID, reviewIDs) {
 		for (var i = 0; i < ratings.length; ++i) {
 			sum += ratings[i];
 		}
-		var rating_avg = Math.round(sum / reviews.length * 10) / 10; //?
+		var rating_avg = Math.round(sum / ratings.length * 10) / 10; //?
     	document.getElementById('rating-num').innerHTML = rating_avg;
 
     	// Set stars based on average rating
@@ -203,7 +203,7 @@ function generateReviewList(landlordID, reviewIDs) {
 		var nums = ["num-ones", "num-twos", "num-threes", "num-fours", "num-fives"];
 
     	for (var i = 0; i < 5; ++i) {
-			var percent_num = Math.round(100 * dist[i] / reviews.length);
+			var percent_num = Math.round(100 * dist[i] / ratings.length);
     		// Set progress bars based on rating percentages
     		document.getElementById(bars[i]).setAttribute("style", 'width: ' + percent_num + '%;');
     		// Set rating percentages
@@ -231,9 +231,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 	getLandlord(landlord_id).then(function(landlord){
 		// Set the landlord name
     	document.getElementById('landlord-name').innerHTML = landlord.name;
-    	document.getElementById('landlord-name').innerHTML = landlord_name;
     	// SET INFORMATION SECTION
-    	document.getElementById('view-properties-on-map').href = "map.html?type='landlord'&value='" + landlord_name + "'";
+    	document.getElementById('view-properties-on-map').href = "map.html?type='landlord'&value='" + landlord.name + "'";
     	// SET properties LIST
     	// SET reviews LIST	
 			
