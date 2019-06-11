@@ -18,7 +18,8 @@ ROOT {
 	// Each GMaps PlaceID that corresponds to a 
 	// property in PROPERTY_IDS and PROPERTIES.
 	LANDLORDS --> {
-		"LandlordID1" --> { 
+		"LandlordID1" --> {
+			"id" --> "LandlordID1",
 			"name" --> "...",
 			"website" --> "...";
 			"phone" --> "...",
@@ -41,7 +42,8 @@ ROOT {
 	// The reviews array contains ReviewIDs, which link to REVIEWS
 	PROPERTIES --> {
 		"Property1_ID" --> {
-			"id" --> "Property1_ID",
+			"propertyID" --> "Property1_ID",
+			"placeID" --> "...".
 			"address" --> "...",
 			"landlord" --> "...",
 			"occupancy" --> #,
@@ -60,6 +62,7 @@ ROOT {
 		"ReviewID" --> {
 			"author" --> "...",
 			"propertyID" --> "...",
+			"reviewID" --> "ReviewID",
 			"date" --> DATE,
 			"rating" --> #,
 			"title" --> "...",
