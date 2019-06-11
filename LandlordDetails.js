@@ -232,7 +232,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		// Set the landlord name
     	document.getElementById('landlord-name').innerHTML = landlord.name;
     	// SET INFORMATION SECTION
-    	document.getElementById('view-properties-on-map').href = "map.html?type='landlord'&value='" + landlord.name + "'";
+    	document.getElementById('view-properties-on-map').href = "map.html?type='landlord'&value='" + landlord.id + "'";
     	// SET properties LIST
     	// SET reviews LIST	
 			
