@@ -1,6 +1,5 @@
 function AddReview() {
 
-  var landlord = $("input[name='landlord']:checked").val();
   var address = $("input[name='locationInput']:selected").val();
   var rating = $("input[name='rating']:checked").val();
   var name = $("input[name='nameInput']").val();
@@ -9,7 +8,6 @@ function AddReview() {
 
 
   var currentReview = {
-    landlord: landlord,
     address: address,
     rating: rating,
     name: name,
