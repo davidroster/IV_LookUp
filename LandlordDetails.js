@@ -163,7 +163,7 @@ function generateReviewList(landlordID, reviewIDs) {
 
         	// Fill in the title and the review itself
         	clones[review.reviewID].querySelectorAll('[id="review-block-title"]')[0].innerHTML = '<strong>' + review.title + '<\strong>';
-        	clones[review.reviewID].querySelectorAll('[id="review-block-description"]')[0].innerHTML = review.text;
+            clones[review.reviewID].querySelectorAll('[id="review-block-description"]')[0].innerHTML = review.text;
 
         	// Append new review to the list
         	original_parent.appendChild(clones[review.reviewID]);
@@ -232,9 +232,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		// Set the landlord name
     	document.getElementById('landlord-name').innerHTML = landlord.name;
     	// SET INFORMATION SECTION
-    	document.getElementById('view-properties-on-map').href = "map.html?type='landlord'&value='" + landlord.id + "'";
-    	// SET properties LIST
-    	// SET reviews LIST	
+        document.getElementById('view-properties-on-map').href = "map.html?type='landlord'&value='" + landlord.id + "'";
+        document.getElementById('logo').src = landlord.iconURL;
+        document.getElementById('landlord-phone').innerHTML = landlord.phone;
+        document.getElementById('landlord-address').innerHTML = landlord.address;
+        document.getElementById('go-to-website').href = landlord.website;
 			
 		if ('properties' in landlord) {
 			generatePropertyList(Object.keys(landlord.properties));
