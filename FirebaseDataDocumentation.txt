@@ -1,0 +1,72 @@
+ROOT {
+	// Map of all landlord ids
+	// A landlord ID is just a static string
+	// to identify a landlord, e.g. "Wolfe".
+	// For technical reasons, (arrays in Firebase suck)
+	// this is a map of LandlordID --> LandlordID.
+	// It will be used as if it is an array.
+	LANDLORD_IDS --> {
+		"Landlord1" --> "Landlord1",
+		"Landlord2" --> "Landlord2",
+		...
+	},
+	// Each value in LANDLORD_IDS corresponds
+	// with a landlord object. Each object contains
+	// the displayed name of the landlord, which
+	// may be different to the id, and a list
+	// of placeIDs for the properties they manage.
+	// Each GMaps PlaceID that corresponds to a 
+	// property in PROPERTY_IDS and PROPERTIES.
+	LANDLORDS --> {
+		"LandlordID1" --> {
+			"id" --> "LandlordID1",
+			"name" --> "...",
+			"website" --> "...";
+			"phone" --> "...",
+			"address" --> "...",
+			"icon_url" --> "...",
+			"properties" --> [...]
+		},
+		...
+	},
+	// Contains the PlaceIDs of all properties.
+	// Like landlords, this also is a map of key --> key
+	// to avoid using an actual array.
+	PROPERTY_IDS --> {
+		"Property1_ID" --> "Property1_ID",
+		"Property2_ID" --> "Property2_ID",
+		...
+	},
+	// PROPERTIES contains all the basic info about
+	// a property that is needed to show it or filter search
+	// The reviews array contains ReviewIDs, which link to REVIEWS
+	PROPERTIES --> {
+		"Property1_ID" --> {
+			"propertyID" --> "Property1_ID",
+			"placeID" --> "...".
+			"address" --> "...",
+			"landlord" --> "...",
+			"occupancy" --> #,
+			"square_foot" --> #,
+			"total_rent" --> #,
+			"reviews" --> [...]
+		},
+		...
+	},
+	// Reviews contains all the reviews, which is linked
+	// to from PROPERTIES. A ReviewID is the property name 
+	// concatenated with the timestamp. While this is not
+	// technically guaranteed to be unique, it should be 
+	// sufficient for this project.
+	REVIEWS --> {
+		"ReviewID" --> {
+			"author" --> "...",
+			"propertyID" --> "...",
+			"reviewID" --> "ReviewID",
+			"date" --> DATE,
+			"rating" --> #,
+			"title" --> "...",
+			"text" --> "..."
+		}
+	}
+}
