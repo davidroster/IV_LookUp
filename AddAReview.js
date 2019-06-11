@@ -1,30 +1,60 @@
-addresses = ['6694 Picasso', '6710 Trigo', '6753 Abrego', '6763 Abrego', '776 Camino del Sur', '6519 Cervantes', '6761 Del Playa', '750 Embarcadero del Mar', '760 Embarcadero del Mar', '755 Embarcadero del Norte']
-var select = document.getElementById("locationInput");
-var inner_string = "";
-for(var i = 0; i < addresses.length; i++) {
-    inner_string += "<option>";
-    inner_string += addresses[i];
-    inner_string += "</option>";
+var rating = 3;
+
+function setStars(stars) {
+	rating = stars;
+	// Set stars based on rating
+	for (j = 0; j < 5; j++) {
+    	var star = document.getElementById('star' + j);
+        if (j + 1 <= stars) {
+        	star.classList.remove('btn-default');
+            star.classList.remove('btn-grey');
+            star.classList.add('btn-warning');
+        }
+        else {
+             star.classList.add('btn-default');
+             star.classList.add('btn-grey');
+             star.classList.remove('btn-warning');
+        }
+    }
 }
-select.innerHTML = inner_string;
 
 function callAddReview() {
-  var address = $("input[name='locationInput']:selected").val();
-  var rating = $("input[name='rating']:checked").val();
-  var name = $("input[name='nameInput']").val();
-  var date = $("input[name='dateInput']").val()
-  var review = $("input[name='reviewInput']").val();
+  var sel = document.getElementById("locationInput");
+  var propertyID = sel.options[sel.selectedIndex].value;
+  var author = $("input[name='authorInput']").val();
+  var title = $("input[name='nameInput']").val();
+  var review = document.getElementById('reviewInput').value;
 
-  AddReview(address, rating, name, date, review);
-}
+  if (author && title && review) {
+  	addReview(propertyID, author, rating, title, review);
 
-function AddReview(address, rating, name, date, review) {
-  var currentReview = {
-    address: address,
-    rating: rating,
-    name: name,
-    date: date,
-    review: review
+  	document.getElementById('authorInput').value = "";
+  	document.getElementById('nameInput').value = "";
+  	document.getElementById('reviewInput').value = "";
+  	setStars(3);
+
+     $('#addWarning').hide();
+     $('#addSuccess').show();
+  } else {
+     $('#addWarning').show();
   }
-
 }
+
+document.addEventListener("DOMContentLoaded", function (event) {
+	$('#addSuccess').hide();
+	$('#addWarning').hide();
+		
+	getProperties().then(function(properties){
+		var select = document.getElementById("locationInput");
+		var inner_string = '';
+		var keys = Object.keys(properties);
+		for (var i = 0; i < keys.length; i++) {
+    		inner_string += '<option value="';
+			inner_string += properties[keys[i]].propertyID;
+			inner_string += '">';
+    		inner_string += properties[keys[i]].address + " #" + properties[keys[i]].unit;
+    		inner_string += '</option>';
+		}
+		select.innerHTML = inner_string;	
+	});
+});

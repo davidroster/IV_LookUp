@@ -135,7 +135,7 @@ function removeProperty(propertyID) {
     propertiesRef.remove(propertyID);
 }
 
-async function getProperties() {
+async function getPropertyIDs() {
     return new Promise(function(resolve, reject) {
 		propertiesRef.once('value').then(function(snapshot) {
 			var IDs = [];
@@ -147,6 +147,14 @@ async function getProperties() {
 	});
 }
 
+async function getProperties() {
+    return new Promise(function(resolve, reject) {
+		propertiesRef.once('value').then(function(snapshot) {
+			resolve(snapshot.val());
+		});
+	});
+}
+
 async function getProperty(propertyID) {
     return new Promise(function(resolve, reject) {
 		propertiesRef.child(propertyID).once('value').then(function(snapshot) {
@@ -154,11 +162,7 @@ async function getProperty(propertyID) {
     	});
 	});
 }
-/*
-addReview('ChIJ28tFSWY_6YARmDq2aaxRltI^2', 'Kari', 5, 'I love tacos', 'Tacos are just great, like you can have steak, carnitas, or chicken, and you can put whatever you want on them. Like you can throw some cheese, pico de gallo, onions, and cilantro on that bitch, and its delicious.');
-addReview('ChIJIY7Ps2c_6YARZfhFuYdUKv0^3', 'Scotty', 5, 'Well I love ice cream', 'I think ice cream is the best. There are so many flavors, like chocolate, strawberry, vanilla, pistachio, caramel, and my personal fave, half-baked. You can have ice cream by itself or in a cake, and itll be amazing!!');
-addReview('ChIJkc0RQkM_6YARnFuOziYhc9k^2', 'Ahsan', 4, 'Chocolate chip cookies are the best tho', 'They are so simple, but chocolate chip cookies are always a crowd favorite. You can celebrate any occasion and eat them, or cry after a breakup and eat them. Theyre hella versitile and thats why theyre the best.');
-*/
+
 function addReview(propertyID, author, rating, title, text) {
 	var date = Date.now();
 	var reviewID = propertyID + '_' + date;

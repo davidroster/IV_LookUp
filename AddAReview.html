@@ -13,7 +13,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href = "stylesheet.css" rel="stylesheet">
+    <link href="stylesheet.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="justified-nav.css" rel="stylesheet">
@@ -41,54 +41,67 @@
     </div>
 
     <div class="jumbotron">
+	  <div class="row">
+	    <div class="col-md-12">
+			<div class="alert alert-success alert-dismissible" id="addSuccess" role="alert"> Review added! </div>
+			<div class="alert alert-warning alert-dismissible" id="addWarning" role="alert"> Fill in the form completely! </div>
+		</div>
+	  </div>
 
-      <div class = "row" id="buttonsRow">
-        <div class = "col-md-6">
+      <div class="row" id="buttonsRow">
+        <div class="col-md-8">
           <label for="Location"><b>Address</b></label>
           <select class = "form-control" name="locationInput" id="locationInput"></select>
         </div>
-
-        <div class ="col-md-6">
+        <div class="col-md-4">
           <p><b>Rating</b></p>
           <form>
-            <label class ="radio-inline">
-              <input type="radio" id="1" value="1" name="rating">1
-            </label>
-            <label class ="radio-inline">
-              <input type="radio" id="2" value="2" name="rating">2
-            </label>
-            <label class ="radio-inline">
-              <input type="radio" id="3" value="3" name="rating">3
-            </label>
-            <label class ="radio-inline">
-              <input type="radio" id="4" value="4" name="rating">4
-            </label>
-            <label class ="radio-inline">
-              <input type="radio" id="5" value="5" name="rating">5
-            </label>
+           	<div class="review-block-rate" id="review-block-rate">
+              <button type="button" class="btn btn-warning btn-lg" id="star0" aria-label="Left Align" onclick="setStars(1)">
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+              </button>
+              <button type="button" class="btn btn-warning btn-lg" id="star1" aria-label="Left Align" onclick="setStars(2)">
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+              </button>
+              <button type="button" class="btn btn-warning btn-lg" id="star2" aria-label="Left Align" onclick="setStars(3)">
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+              </button>
+              <button type="button" class="btn btn-default btn-grey btn-lg" id="star3" aria-label="Left Align" onclick="setStars(4)">
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+              </button>
+              <button type="button" class="btn btn-default btn-grey btn-lg" id="star4" aria-label="Left Align" onclick="setStars(5)">
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+              </button>
+            </div>
           </form>
         </div>
       </div>
 
-      <div class = "row" id="nameTitleDateRow">
-        <div class = "col-md-6">
-          <label for="Name"><b>Name</b></label>
+      <div class="row mt-3" id="nameTitleDateRow">
+        <div class="col-md-6">
+          <label for="Name"><b>Title</b></label>
           <input type="text" class="form-control" name="nameInput" id="nameInput">
-        </div>
-        <div class = "col-md-6">
-          <label for="Date"><b>Date</b></label>
-          <input type="date" class = "form-control" name="dateInput" id="dateInput">
+        </div> 
+		<div class="col-md-6">
+          <label for="Author"><b>Author</b></label>
+          <input type="text" class="form-control" name="authorInput" id="authorInput">
         </div>
       </div>
 
-    <div class = "row" id="reviewRow">
-      <div class = "col-md-12">
+    <div class="row mt-4" id="reviewRow">
+      <div class="col-md-12">
         <label for="Review"><b>Review</b></label>
-        <input type="text" class = "form-control" name="reviewInput" id="reviewInput">
+		<textarea class="form-control" name="reviewInput" id="reviewInput" rows="8"></textarea>
       </div>
     </div>
 
-    <button type = "button" onclick = "callAddReview();" class = "btn btn-primary mb-2 ml-2">Submit</button>
+	<div class="row mt-4">
+	  <div class="col-md-4"></div>
+	  <div class="col-md-4">
+        <button type = "button" onclick="callAddReview();" class="btn btn-primary" style="width:100%">Submit</button>
+	  </div>
+	  <div class="col-md-4"></div>
+	</div>
 
   </div>
 </body>
@@ -102,8 +115,30 @@
 <script src="../../dist/js/bootstrap.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-<script src="./AddAReview.js"></script>
 
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
+
+<!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-database.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDgEfoF32hR0nDplecl9fnzYRH0eyFqbhs",
+    authDomain: "ivlookup.firebaseapp.com",
+    databaseURL: "https://ivlookup.firebaseio.com",
+    projectId: "ivlookup",
+    storageBucket: "ivlookup.appspot.com",
+    messagingSenderId: "402806144566",
+    appId: "1:402806144566:web:60a7ec061f36ac51"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+<script src="./FirebaseTools.js"></script>
+<script src="./AddAReview.js"></script>
 
 
 <script>
