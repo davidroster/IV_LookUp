@@ -5,7 +5,7 @@ var infoWindows = [];   // show info when you click on a marker
 var map;
 var lastOpenedWindow = null;
 var mapCenter = { lat: 34.4133, lng: -119.8610 };
-var landlordRatings = []
+var landlordRatings = [];
 var reviewTemplate =
     `
 <div class="row">
@@ -27,7 +27,8 @@ var reviewTemplate =
 </div>
 </div>
 <hr>
-`
+`;
+
 var reviewTest = {
     "imageUrl": "http://dummyimage.com/60x60/666/ffffff&text=No+Image",
     "username": "Bobby",
@@ -39,9 +40,16 @@ var reviewTest = {
     "star5": "",
     "reviewHeader": "Great Management",
     "reviewBody": "his was nice in buy. this was nice in buy. this was nice in buy.this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy"
-}
+};
+
+var minRent = null;
+var maxRent = null;
+var minOccupants = null;
+var maxOccupants = null;
+
 function getLandlordInformation(searchForm) {
-    searchInput = document.getElementById("search-input").value;
+   
+    setFilters();
     if (validate()) {
         // CLEAR MARKERS ON MAP
         deleteMarkers();
@@ -83,6 +91,33 @@ function getLandlordInformation(searchForm) {
     }
 }
 
+function setFilters(){
+    searchInput = document.getElementById("search-input").value;
+
+    if(document.getElementById("min-rent").value != ''){
+        minRent = document.getElementById("min-rent").value;
+    }
+    if(document.getElementById("max-rent").value != ''){
+        maxRent = document.getElementById("max-rent").value;
+    }
+    if(document.getElementById("min-occupants").value != ''){
+        minOccupants = document.getElementById("min-occupants").value;
+    }
+    if(document.getElementById("max-occupants").value != ''){
+        maxOccupants = document.getElementById("max-occupants").value;
+    }
+    console.log("min rent " + minRent + " max rent " + maxRent + " min occupants " + minOccupants + " max occupants " + maxOccupants);
+}
+
+function validate() {
+    if (searchInput === '') {
+        alert('Please Input Landlord You Want To Search');
+        return false;
+    }
+    else {
+        return true;
+    }
+}
 
 function myMap() {
     map = new google.maps.Map(document.getElementById('googleMap'), {
@@ -131,15 +166,7 @@ function setMapOnAll(map) {
     }
     infoWindows = [];
 }
-function validate() {
-    if (searchInput === '') {
-        alert('Please Input Landlord You Want To Search');
-        return false;
-    }
-    else {
-        return true;
-    }
-}
+
 
 
 
@@ -152,8 +179,6 @@ function drawRatingsGraph() {
 
     var options = {
         title: "Landlord Ratings Over Time",
-        backgroundColor: '#fcfdff',
-        is3D: true,
         format: 'none',
         legend: 'none',
         hAxis: {
