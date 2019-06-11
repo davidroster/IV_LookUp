@@ -25,9 +25,6 @@
     <!-- For the Properties Scroller -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-    <script type="text/JavaScript" src="PropertyDetails.js"></script>
-    <script type="text/JavaScript" src="LandlordDetails.js"></script>
 </head>
 
 <body>
@@ -251,7 +248,7 @@
                                             was nice in buy this was nice in buy this was nice in buy</div>
                                     </div>
                                 </div>
-                                <hr />
+                             </hr>
                         </div>
                     </div>
                 </div>
@@ -276,6 +273,31 @@
 <script src="../../dist/js/bootstrap.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
+
+<!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-database.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDgEfoF32hR0nDplecl9fnzYRH0eyFqbhs",
+    authDomain: "ivlookup.firebaseapp.com",
+    databaseURL: "https://ivlookup.firebaseio.com",
+    projectId: "ivlookup",
+    storageBucket: "ivlookup.appspot.com",
+    messagingSenderId: "402806144566",
+    appId: "1:402806144566:web:60a7ec061f36ac51"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+<script type="text/JavaScript" src="FirebaseTools.js"></script>
+<script type="text/JavaScript" src="LandlordDetails.js"></script>
+<script type="text/JavaScript" src="PropertyDetails.js"></script>
 
 <script>
     Holder.addTheme('thumb', {

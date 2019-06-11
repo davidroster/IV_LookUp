@@ -81,6 +81,28 @@ async function getLandlordRatings(landlordID) {
 	});
 }
 
+async function getPlaceRatings(placeID) {
+	return new Promise(function(resolve, reject) {
+		getProperties().then(function(properties) {
+			var reviewPromises = [];
+			Object.values(properties).forEach(function(property){
+				if (property.placeID == placeID && 'reviews' in property) {
+					Object.keys(property.reviews).forEach(function(reviewID) {
+						reviewPromises.push(new Promise(function(resolve, reject) {
+							getReview(reviewID).then(function(review) {
+								resolve(review.rating);
+							});
+						}));
+					});	
+				}
+			});
+			Promise.all(reviewPromises).then(function(ratings){
+				resolve(ratings.flat());
+			});
+		});
+	});
+}
+
 async function getLandlordReviews(landlordID) {
 	return new Promise(function(resolve, reject) {
 		getLandlord(landlordID).then(function(landlord) {

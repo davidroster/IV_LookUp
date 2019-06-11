@@ -6,8 +6,10 @@ var map;
 var lastOpenedWindow = null;
 var mapCenter = { lat: 34.4133, lng: -119.8610 };
 var landlordRatings = [];
-var reviewTemplate =
-    `
+
+// I think we don't want reviews making this page too busy
+/*var reviewTemplate =
+`
 <div class="row">
 <div class="col-sm-3">
   <img src={{imageUrl}} class="img-rounded">
@@ -40,55 +42,64 @@ var reviewTest = {
     "star5": "",
     "reviewHeader": "Great Management",
     "reviewBody": "his was nice in buy. this was nice in buy. this was nice in buy.this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy"
-};
+};*/
 
 var minRent = null;
 var maxRent = null;
 var minOccupants = null;
 var maxOccupants = null;
 
+var geocoder = new google.maps.Geocoder;
+
 function getLandlordInformation(searchForm) {
-   
+	getProperties().then(function(properties){
+		Object.keys(properties).forEach(function(propertyID){
+			geocoder.geocode({'placeId': properties[propertyID].placeID}, function(results, status) {
+         		if (status === 'OK') {
+            		if (results[0]) {
+              			var marker = new google.maps.Marker({ map: map, position: results[0].geometry.location });
+            			console.log(marker);
+					}
+          		}
+        	});
+		});
+	});  
+
     setFilters();
-    if (validate()) {
-        // CLEAR MARKERS ON MAP
-        deleteMarkers();
+    // CLEAR MARKERS ON MAP
+    deleteMarkers();
 
-        // CLEAR PROPERTIES ARRAY
-        properties = [];
-        //TODO: RETRIEVE DATA FROM DB
+    // CLEAR PROPERTIES ARRAY
+    properties = [];
+    // TODO: Stuff	
 
-        //TODO: PUT RETRIEVED DATA INTO PROPERTIES ARRAY
-        properties = [{ title: "property 5", lat: 34.4133, lng: -119.8610 },
+    //TODO: PUT RETRIEVED DATA INTO PROPERTIES ARRAY
+    properties = [{ title: "property 5", lat: 34.4133, lng: -119.8610 },
         { title: "property 6", lat: 34.4139, lng: -119.8612 },
         { title: "property 7", lat: 34.4131, lng: -119.8614 },
         { title: "property 8", lat: 34.4132, lng: -119.8616 },
         { title: "property 9", lat: 34.4134, lng: -119.8619 }]  // FAKE RETRIEVED DATA
 
-        // SHOW NEW MARKERS
-        showMarkers();
+    // SHOW NEW MARKERS
+    showMarkers();
 
-        //TODO: RETREIVE YEARLY RATINGS
-        landlordRatings = [
-            [2010, 3], [2011, 4], [2012, 5], [2013, 2], [2014, 3], [2015, 4],
-            [2016, 4], [2017, 4.5], [2018, 4.3], [2019, 4.8]
-        ]
+    //RETREIVE YEARLY RATINGS 
+	// I think this might be better on landlord page
+    //landlordRatings = [ [2010, 3], [2011, 4], [2012, 5], [2013, 2], [2014, 3], [2015, 4], [2016, 4], [2017, 4.5], [2018, 4.3], [2019, 4.8] ];
 
-        //SHOW REVIEWS ELEMENTS
-        var reviewHTML = Mustache.render(reviewTemplate, reviewTest);
-        // Dummy reviews
-        for(i = 0; i < 5; i++){
-            document.getElementById("reviews").innerHTML += reviewHTML;
-        }
-        //CREATE GRAPH 
-        document.getElementById("graph").hidden = false;
-        document.getElementById("ratingsGraph").hidden = false;
-        google.charts.load('current', { packages: ['corechart', 'line'] });
-        google.charts.setOnLoadCallback(drawRatingsGraph);
-        //PLOT DATA
-        drawRatingsGraph();
-
-    }
+    //SHOW REVIEWS ELEMENTS
+    //var reviewHTML = Mustache.render(reviewTemplate, reviewTest);
+    // Dummy reviews
+    /*for(i = 0; i < 5; i++){
+        document.getElementById("reviews").innerHTML += reviewHTML;
+    }*/
+    //CREATE GRAPH 
+    /*document.getElementById("graph").hidden = false;
+    document.getElementById("ratingsGraph").hidden = false;
+    google.charts.load('current', { packages: ['corechart', 'line'] });
+    google.charts.setOnLoadCallback(drawRatingsGraph);*/
+    //PLOT DATA
+    //drawRatingsGraph();
 }
 
 function setFilters(){
@@ -109,7 +120,7 @@ function setFilters(){
     console.log("min rent " + minRent + " max rent " + maxRent + " min occupants " + minOccupants + " max occupants " + maxOccupants);
 }
 
-function validate() {
+/*function validate() {
     if (searchInput === '') {
         alert('Please Input Landlord You Want To Search');
         return false;
@@ -117,7 +128,7 @@ function validate() {
     else {
         return true;
     }
-}
+}*/
 
 function myMap() {
     map = new google.maps.Map(document.getElementById('googleMap'), {
@@ -167,10 +178,7 @@ function setMapOnAll(map) {
     infoWindows = [];
 }
 
-
-
-
-function drawRatingsGraph() {
+/*function drawRatingsGraph() {
 
     var data = new google.visualization.DataTable();
     data.addColumn('number', 'Year');
@@ -192,7 +200,7 @@ function drawRatingsGraph() {
     var chart = new google.visualization.LineChart(document.getElementById('ratingsGraph'));
 
     chart.draw(data, options);
-}
+}*/
 
 // Obtain the type (landlord or property) and the value (name of landlord or address of property) that was clicked from the URL
 var queryString = decodeURIComponent(window.location.search);

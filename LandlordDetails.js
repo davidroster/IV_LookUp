@@ -101,7 +101,7 @@ function generatePropertyList(propertyIDs) {
 		getProperty(propertyIDs[i]).then(function(property) {	
         	clone_property_items[property.propertyID].querySelectorAll('[id="property-thumbnail"]')[0].src = property.imageURL;
         	clone_property_items[property.propertyID].querySelectorAll('[id="property-caption"]')[0].innerHTML = property.address;
-			clone_property_items[property.propertyID].querySelectorAll('[id="property-link"]')[0].href = "PropertyDetails.html?id='" + property.propertyID + "'";	
+			clone_property_items[property.propertyID].querySelectorAll('[id="property-link"]')[0].href = "PropertyDetails.html?id='" + property.placeID + "'";	
 		});
 
         if (i % 4 == 0) { // If i is a multiple of 4, append the new carousel item
@@ -120,7 +120,7 @@ function generatePropertyList(propertyIDs) {
 }
 
 // Function to generate list of reviews 
-function generateReviewList(landlordID, reviewIDs) {
+function generateReviewList(reviewIDs) {
 
     // Get original rating to clone
     var original_review = document.getElementById('original-review');
@@ -174,45 +174,44 @@ function generateReviewList(landlordID, reviewIDs) {
 		});
     }
 
-    // Calculate average rating and set it
-	getLandlordRatings(landlordID).then(function(ratings){
-    	var dist = ratingDistribution(ratings);
-		var sum = 0;
-		for (var i = 0; i < ratings.length; ++i) {
-			sum += ratings[i];
-		}
-		var rating_avg = Math.round(sum / ratings.length * 10) / 10; //?
-    	document.getElementById('rating-num').innerHTML = rating_avg;
+	// Remove original (dummy) review
+    original_review.remove();	
+}
 
-    	// Set stars based on average rating
-    	for (j = 0; j < 5; j++) {
-        	var star = 'avg_star' + j;
-        	if (j + 1 <= rating_avg) {
-            	document.getElementById(star).classList.remove('btn-default');
-            	document.getElementById(star).classList.remove('btn-grey');
-            	document.getElementById(star).classList.add('btn-warning');
-        	}
-        	else {
-            	document.getElementById(star).classList.add('btn-default');
-            	document.getElementById(star).classList.add('btn-grey');
-            	document.getElementById(star).classList.remove('btn-warning');
-        	}
-    	}
+function generateRatingsDistribution(ratings) {
+    var dist = ratingDistribution(ratings);
+	var sum = 0;
+	for (var i = 0; i < ratings.length; ++i) {
+		sum += ratings[i];
+	}
+	var rating_avg = Math.round(sum / ratings.length * 10) / 10; //?
+    document.getElementById('rating-num').innerHTML = rating_avg;
 
-		var bars = ["num-ones-bar", "num-twos-bar", "num-threes-bar", "num-fours-bar", "num-fives-bar"];
-		var nums = ["num-ones", "num-twos", "num-threes", "num-fours", "num-fives"];
+    // Set stars based on average rating
+    for (j = 0; j < 5; j++) {
+       	var star = 'avg_star' + j;
+       	if (j + 1 <= rating_avg) {
+           	document.getElementById(star).classList.remove('btn-default');
+           	document.getElementById(star).classList.remove('btn-grey');
+           	document.getElementById(star).classList.add('btn-warning');
+       	}
+       	else {
+           	document.getElementById(star).classList.add('btn-default');
+           	document.getElementById(star).classList.add('btn-grey');
+           	document.getElementById(star).classList.remove('btn-warning');
+       	}
+   	}
 
-    	for (var i = 0; i < 5; ++i) {
-			var percent_num = Math.round(100 * dist[i] / ratings.length);
-    		// Set progress bars based on rating percentages
-    		document.getElementById(bars[i]).setAttribute("style", 'width: ' + percent_num + '%;');
-    		// Set rating percentages
-    		document.getElementById(nums[i]).innerHTML = percent_num + '%';
-		}
-	});
+	var bars = ["num-ones-bar", "num-twos-bar", "num-threes-bar", "num-fours-bar", "num-fives-bar"];
+	var nums = ["num-ones", "num-twos", "num-threes", "num-fours", "num-fives"];
 
-    // Remove original (dummy) review
-    original_review.remove();
+   	for (var i = 0; i < 5; ++i) {
+		var percent_num = Math.round(100 * dist[i] / ratings.length);
+   		// Set progress bars based on rating percentages
+   		document.getElementById(bars[i]).setAttribute("style", 'width: ' + percent_num + '%;');
+   		// Set rating percentages
+   		document.getElementById(nums[i]).innerHTML = percent_num + '%';
+	} 
 }
 
 // Obtain the landlord that was clicked from the URL
@@ -239,7 +238,16 @@ document.addEventListener("DOMContentLoaded", function (event) {
         document.getElementById('go-to-website').href = landlord.website;
 			
 		if ('properties' in landlord) {
-			generatePropertyList(Object.keys(landlord.properties));
+			var ids = Object.keys(landlord.properties);
+			// This is such a dumb way to do this... -Scotty
+			getProperties().then(function(properties){
+				var addrToID = {};
+				for (var i = 0; i < ids.length; ++i) {
+					var prop = properties[ids[i]];
+					addrToID[prop.address] = prop.propertyID;
+				}
+				generatePropertyList(Object.values(addrToID));
+			});
 		} else {
 			generatePropertyList([]);
 		}
@@ -248,6 +256,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
     // Generate list of reviews
     //GenerateReviewList(reviews); 
 	getLandlordReviews(landlord_id).then(function(reviewIDs){
-		generateReviewList(landlord_id, reviewIDs);
+		generateReviewList(reviewIDs);
+	});
+	getLandlordRatings(landlord_id).then(function(ratings){
+		generateRatingsDistribution(ratings);
 	});
 });
