@@ -1,6 +1,7 @@
 function callAddReview() {
   var address = $("input[name='locationInput']:selected").val();
-  var rating = $("input[name='rating']:checked").val();
+  var rating_string = $("input[name='rating']:checked").val();
+  rating = ParseInt(rating_string, 10)
   var name = $("input[name='nameInput']").val();
   var date = $("input[name='dateInput']").val()
   var review = $("input[name='reviewInput']").val();
