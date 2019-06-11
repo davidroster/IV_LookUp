@@ -45,8 +45,9 @@ function generateLandlordList(landlordIDs) {
         	clone.querySelectorAll('[id="link-to-details"]')[0].href = "LandlordDetails.html?landlord_id='" + landlord.id + "'";
         	clone.querySelectorAll('[id="landlord-phone-address"]')[0].innerHTML = landlord.phone + ' · ' + landlord.address;
         	clone.querySelectorAll('[id="go-to-website"]')[0].href = landlord.website;
-
-        	// Append new list item to list
+        	clone.querySelectorAll('[id="view-properties-on-map"]')[0].href = "map.html?type='landlord'&value='" + landlord.id + "'";
+        	
+			// Append new list item to list
         	originalParent.appendChild(clone);
 		});
     }

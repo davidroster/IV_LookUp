@@ -37,12 +37,89 @@
 
     <div class="jumbotron">
       <h1>Add A Review to IV Lookup!</h1>
-      <p class="lead">Click whether this is a review to an existing property or to a new house.
-        Then just Fill out the form and click submit!
-       </p>
+      <p align="center">Add a review for a landlord!</p>
     </div>
 
+    <div class="jumbotron">
 
+      <div class = "row" id="buttonsRow">
+        <div class ="col-md-4">
+          <label for="Landlord"><b>Landlord</b></label>
+          <div class="form-check">
+            <input type="radio" class="form-check-input" id="Wolfe" value="Wolfe" name="landlord">
+            <label class="form-check-label" for="Wolfe">Wolfe and Associates</label>
+          </div>
+          <div class="form-check">
+            <input type="radio" class="form-check-input" id="Meridian" value="Meridian" name="landlord">
+            <label class="form-check-label" for="Meridian">Meridian Group</label>
+          </div>
+          <div class="form-check">
+            <input type="radio" class="form-check-input" id="Sierra" value="Sierra" name="landlord">
+            <label class="form-check-label" for="Sierra">Sierra Property Management</label>
+          </div>
+        </div>
+
+        <div class = "col-md-4">
+          <label for="Location"><b>Address</b></label>
+          <select class = "form-control" name="locationInput" id="locationInput">
+            <option>None (General)</option>
+            <option>6694 Picasso</option>
+            <option>6710 Trigo</option>
+            <option>6753 Abrego</option>
+            <option>6763 Abrego</option>
+            <option>776 Camino del Sur</option>
+            <option>6519 Cervantes</option>
+            <option>6761 Del Playa</option>
+            <option>750 Embarcadero del Mar</option>
+            <option>760 Embarcadero del Mar</option>
+            <option>755 Embarcadero del Norte</option>
+          </select>
+        </div>
+
+        <div class ="col-md-4">
+          <label for="Rating"><b>Rating</b></label>
+          <div class="form-check">
+            <input type="radio" class="form-check-input" id="1" value="1" name="rating">
+            <label class="form-check-label" for="1">1</label>
+          </div>
+          <div class="form-check">
+            <input type="radio" class="form-check-input" id="2" value="2" name="rating">
+            <label class="form-check-label" for="2">2</label>
+          </div>
+          <div class="form-check">
+            <input type="radio" class="form-check-input" id="3" value="3" name="rating">
+            <label class="form-check-label" for="3">3</label>
+          </div>
+          <div class="form-check">
+            <input type="radio" class="form-check-input" id="4" value="4" name="rating">
+            <label class="form-check-label" for="4">4</label>
+          </div>
+          <div class="form-check">
+            <input type="radio" class="form-check-input" id="5" value="5" name="rating">
+            <label class="form-check-label" for="5">5</label>
+          </div>
+        </div>
+      </div>
+
+      <div class = "row" id="nameTitleDateRow">
+        <div class = "col-md-6">
+          <label for="Name"><b>Name</b></label>
+          <input type="text" class="form-control" name="nameInput" id="nameInput">
+        </div>
+        <div class = "col-md-6">
+          <label for="Date"><b>Date</b></label>
+          <input type="date" class = "form-control" name="dateInput" id="dateInput">
+        </div>
+      </div>
+
+    <div class = "row" id="reviewRow">
+      <div class = "col-md-12">
+        <label for="Review"><b>Review</b></label>
+        <input type="text" class = "form-control" name="reviewInput" id="reviewInput">
+      </div>
+    </div>
+
+    <button type = "button" onclick = "AddReview();" class = "btn btn-primary mb-2 ml-2">Submit</button>
 
   </div>
 </body>

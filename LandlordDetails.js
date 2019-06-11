@@ -1,24 +1,3 @@
-// Test data. Input for GeneratePropertyList() must be in this format
-var properties = [
-    { address: '6694 Picasso', image: 'house1.jpg' },
-    { address: '6710 Trigo', image: 'house2.jpg' },
-    { address: '6753 Abrego', image: 'house3.jpg' },
-    { address: '6763 Abrego', image: 'house4.jpg' },
-    { address: '776 Camino del Sur', image: 'house5.jpg' },
-    { address: '6519 Cervantes', image: 'house6.jpg' },
-    { address: '6761 Del Playa', image: 'house7.jpg' },
-    { address: '750 Embarcadero del Mar', image: 'house8.jpg' },
-    { address: '760 Embarcadero del Mar', image: 'house9.jpg' },
-    { address: '755 Embarcadero del Norte', image: 'house10.jpg' }
-];
-
-// Test data. Input for GenerateReviewList() must be in this format
-var reviews = [
-    { name: 'Kari', date: new Date(1997, 5, 5), rating: 5, title: 'I love tacos', review: 'Tacos are just great, like you can have steak, carnitas, or chicken, and you can put whatever you want on them. Like you can throw some cheese, pico de gallo, onions, and cilantro on that bitch, and its delicious.' },
-    { name: 'Scotty', date: new Date(1995, 0, 9), rating: 5, title: 'Well I love icecream', review: 'I think icecream is the best. There are so many flavors, like chocolate, strawberry, vanilla, pistachio, caramel, and my personal fave, half-baked. You can have ice cream by itself or in a cake, and itll be amazeballs!!' },
-    { name: 'Ahsan', date: new Date(1996, 11, 22), rating: 4, title: 'Chocolate chip cookies are the best tho', review: 'They are so simple, but chocolate chip cookies are always a crowd favorite. You can celebrate any occasion and eat them, or cry after a breakup and eat them. Theyre hella versitile and thats why theyre the best.' }
-];
-
 function monthOf(date) {
     var monthNum = date.getMonth() + 1;
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -122,6 +101,7 @@ function generatePropertyList(propertyIDs) {
 		getProperty(propertyIDs[i]).then(function(property) {	
         	clone_property_items[property.propertyID].querySelectorAll('[id="property-thumbnail"]')[0].src = property.imageURL;
         	clone_property_items[property.propertyID].querySelectorAll('[id="property-caption"]')[0].innerHTML = property.address;
+			clone_property_items[property.propertyID].querySelectorAll('[id="property-link"]')[0].href = "PropertyDetails.html?id='" + property.propertyID + "'";	
 		});
 
         if (i % 4 == 0) { // If i is a multiple of 4, append the new carousel item
@@ -251,7 +231,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
 	getLandlord(landlord_id).then(function(landlord){
 		// Set the landlord name
     	document.getElementById('landlord-name').innerHTML = landlord.name;
+    	document.getElementById('landlord-name').innerHTML = landlord_name;
     	// SET INFORMATION SECTION
+    	document.getElementById('view-properties-on-map').href = "map.html?type='landlord'&value='" + landlord_name + "'";
     	// SET properties LIST
     	// SET reviews LIST	
 			
@@ -267,5 +249,4 @@ document.addEventListener("DOMContentLoaded", function (event) {
 	getLandlordReviews(landlord_id).then(function(reviewIDs){
 		generateReviewList(landlord_id, reviewIDs);
 	});
-
 });

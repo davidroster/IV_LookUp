@@ -169,6 +169,17 @@ function drawRatingsGraph() {
     chart.draw(data, options);
 }
 
+// Obtain the type (landlord or property) and the value (name of landlord or address of property) that was clicked from the URL
+var queryString = decodeURIComponent(window.location.search);
+queryString = queryString.substring(1);
+var queries = queryString.split("'");
+
+// The variable 'type' will either be 'landlord' or 'property'
+var type = queries[1];
+
+// The variable 'value' will either be the name of a landlord or the address of a property, as described by the 'type' variable.
+var value = queries[3];
+
 $(document).ready(function () {
     myMap();
 });
