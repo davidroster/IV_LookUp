@@ -10,7 +10,7 @@ David Roster:
 Idea, prototyping & XD design, initial site build, and login page
 
 Marco Chavez:
-Maps page
+Maps page, user cases
 
 Scotty DeMoney:
 Firebase setup and integration into landlords and properties
