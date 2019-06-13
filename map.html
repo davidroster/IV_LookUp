@@ -80,17 +80,19 @@
               <hr>
             </div>
           </div>
-          <div class="review-block" id="reviews">
+          <div class="review-block mt-1" id="reviews">
           </div>
         </div>
+
       </div>
       <!--  Sidebar Filter/Search bar-->
       <div class="column sidebar rounded  ">
         <div class="search-container">
           <h5 class="mt-1" for="">Landlord Filter</h5>
           <div class="input-group my-auto">
-            <input class="form-control" id="search-input" type="text" placeholder="Search By Landlord"
-              name="landlordName">
+            <select class="form-control" name="landlord-dropdown" id="landlord-dropdown">
+              <option value="choose landlord" disabled> Choose Landlord</option>
+            </select>
           </div>
           <div id="rent-filter">
             <h5 class="mt-1" for="rent-filter"> Rent Filter</h5>

@@ -5,19 +5,19 @@ var infoWindows = [];   // show info when you click on a marker
 var map;
 var lastOpenedWindow = null;
 var mapCenter = { lat: 34.4133, lng: -119.8610 };
-var landlordRatings = [];
-
+var landlords = ["Wolfe","Sierra","SFM","The Hive"];
+var resultArray = [];
 // I think we don't want reviews making this page too busy
-/*var reviewTemplate =
+var resultTemplate =
 `
 <div class="row">
 <div class="col-sm-3">
   <img src={{imageUrl}} class="img-rounded">
-  <div class="review-block-name"><a href="#">{{username}}</a></div>
-  <div class="review-block-date">{{reviewDate}}</div>
+  <div class="review-block-name"><a href={{landlordPage}} target=”_blank”>{{landlord}}</a></div>
+  <div class="review-block-date">{{address}}</div>
 </div>
 <div class="col-sm-9">
-  <div class="review-block-rate">
+  <div class=" col review-block-rate">
     <span class="fa fa-star {{star1}}"></span>
     <span class="fa fa-star {{star2}}"></span>
     <span class="fa fa-star {{star3}}"></span>
@@ -31,27 +31,43 @@ var landlordRatings = [];
 <hr>
 `;
 
+
+
+function Result(imgUrl,stars,address,landlord,landlordPage){
+    this.imageUrl = imgUrl;
+    this.star1 = (stars >= 1)?"checked-star":"";
+    this.star2 =(stars >= 2)?"checked-star":"";
+    this.star3= (stars >= 3)?"checked-star":"";
+    this.star4 = (stars >= 4)?"checked-star":"";
+    this.star5 =(stars >= 5)?"checked-star":"";
+    this.address = address;
+    this.landlord = landlord;
+    this.landlordPage = landlordPage;
+
+}
+/*
 var reviewTest = {
     "imageUrl": "http://dummyimage.com/60x60/666/ffffff&text=No+Image",
     "username": "Bobby",
     "reviewDate": "January 29, 2016",
-    "star1": "checked-star",
-    "star2": "checked-star",
-    "star3": "checked-star",
-    "star4": "",
-    "star5": "",
+    "star1": (landlordRating >= 1)?"checked-star":"",
+    "star2": (landlordRating >= 2)?"checked-star":"",
+    "star3": (landlordRating >= 3)?"checked-star":"",
+    "star4": (landlordRating >= 4)?"checked-star":"",
+    "star5": (landlordRating >= 5)?"checked-star":"",
     "reviewHeader": "Great Management",
     "reviewBody": "his was nice in buy. this was nice in buy. this was nice in buy.this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy"
-};*/
-
+};
+*/
 var minRent = null;
 var maxRent = null;
 var minOccupants = null;
 var maxOccupants = null;
 
-var geocoder = new google.maps.Geocoder;
+//var geocoder = new google.maps.Geocoder;
 
 function getLandlordInformation(searchForm) {
+    /*
 	getProperties().then(function(properties){
 		Object.keys(properties).forEach(function(propertyID){
 			geocoder.geocode({'placeId': properties[propertyID].placeID}, function(results, status) {
@@ -64,7 +80,7 @@ function getLandlordInformation(searchForm) {
         	});
 		});
 	});  
-
+    */
     setFilters();
     // CLEAR MARKERS ON MAP
     deleteMarkers();
@@ -88,11 +104,12 @@ function getLandlordInformation(searchForm) {
     //landlordRatings = [ [2010, 3], [2011, 4], [2012, 5], [2013, 2], [2014, 3], [2015, 4], [2016, 4], [2017, 4.5], [2018, 4.3], [2019, 4.8] ];
 
     //SHOW REVIEWS ELEMENTS
-    //var reviewHTML = Mustache.render(reviewTemplate, reviewTest);
-    // Dummy reviews
-    /*for(i = 0; i < 5; i++){
+    
+    // Display dummy results
+    for(i = 0; i < 5; i++){
+        var reviewHTML = Mustache.render(resultTemplate, resultArray[i]);
         document.getElementById("reviews").innerHTML += reviewHTML;
-    }*/
+    }
     //CREATE GRAPH 
     /*document.getElementById("graph").hidden = false;
     document.getElementById("ratingsGraph").hidden = false;
@@ -103,7 +120,7 @@ function getLandlordInformation(searchForm) {
 }
 
 function setFilters(){
-    searchInput = document.getElementById("search-input").value;
+    //searchInput = document.getElementById("search-input").value;
 
     if(document.getElementById("min-rent").value != ''){
         minRent = document.getElementById("min-rent").value;
@@ -214,5 +231,19 @@ var type = queries[1];
 var value = queries[3];
 
 $(document).ready(function () {
+    var landlordDropdown = document.getElementById("landlord-dropdown");
+    for(i=0; i < landlords.length; i++){
+        var opt = landlords[i];
+        console.log(opt);
+        var optElement = document.createElement("option");
+        optElement.textContent = opt;
+        optElement.value = opt;
+        landlordDropdown.appendChild(optElement);
+    }
+
+    var result = new Result("house9.jpg",5,"555 Storke Rd","UCSB Housing","https://www.rlwa.com/");
+    resultArray = [result,result,result,result,result];
+    console.log(resultArray);
+
     myMap();
 });
