@@ -37,6 +37,16 @@ async function getLandlords() {
 	);
 }
 
+
+async function getLandlordsInfo() {
+	return new Promise(function(resolve, reject) {
+			landlordsRef.once('value').then(function(snapshot) {
+				resolve(Object.values(snapshot.val()));
+			});
+    	}
+	);
+}
+
 async function getLandlord(landlordID) {
 	return new Promise(function(resolve, reject) {
 			landlordsRef.child(landlordID).once('value').then(function(snapshot) {

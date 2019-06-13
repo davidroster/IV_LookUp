@@ -5,14 +5,14 @@ var infoWindows = [];   // show info when you click on a marker
 var map;
 var lastOpenedWindow = null;
 var mapCenter = { lat: 34.4133, lng: -119.8610 };
-var landlords = ["Wolfe","Sierra","SFM","The Hive"];
+//var landlords = ["Wolfe","Sierra","SFM","The Hive"];
 var resultArray = [];
 // I think we don't want reviews making this page too busy
 var resultTemplate =
 `
 <div class="row">
 <div class="col-sm-3">
-  <img src={{imageUrl}} class="img-rounded">
+  <img src={{imageUrl}} class="img-rounded" style="max-width:300px">
   <div class="review-block-name"><a href={{landlordPage}} target=”_blank”>{{landlord}}</a></div>
   <div class="review-block-date">{{address}}</div>
 </div>
@@ -59,35 +59,59 @@ var reviewTest = {
     "reviewBody": "his was nice in buy. this was nice in buy. this was nice in buy.this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy"
 };
 */
-var minRent = null;
-var maxRent = null;
-var minOccupants = null;
-var maxOccupants = null;
 
 //var geocoder = new google.maps.Geocoder;
 
+function loadReviews() {
+	document.getElementById("reviews").innerHTML = "";
+	for (i = 0; i < results.length; i++) {
+        var reviewHTML = Mustache.render(resultTemplate, results[i]);
+        document.getElementById("reviews").innerHTML += reviewHTML;
+	}
+}
+
 function getLandlordInformation(searchForm) {
-    /*
 	getProperties().then(function(properties){
 		Object.keys(properties).forEach(function(propertyID){
-			geocoder.geocode({'placeId': properties[propertyID].placeID}, function(results, status) {
-         		if (status === 'OK') {
-            		if (results[0]) {
-              			var marker = new google.maps.Marker({ map: map, position: results[0].geometry.location });
-            			console.log(marker);
-					}
-          		}
-        	});
+			var request = {
+    			location: map.getCenter(),
+    			radius: '2000',
+    			query: properties[propertyID].placeID,
+  			};
+
+  			var service = new google.maps.places.PlacesService(map);
+  			service.textSearch(request, function callback(results, status) {
+  				if (status == google.maps.places.PlacesServiceStatus.OK) {
+    				var marker = new google.maps.Marker({ map: map, place: { placeId: results[0].place_id, location: results[0].geometry.location } });
+				}
+			});
+				
 		});
 	});  
-    */
+    
     setFilters();
     // CLEAR MARKERS ON MAP
     deleteMarkers();
 
     // CLEAR PROPERTIES ARRAY
+	results = [];
     properties = [];
-    // TODO: Stuff	
+	document.getElementById("reviews").innerHTML = "";
+
+	getProperties().then(function(propertiesMap){
+		var properties = Object.values(propertiesMap);
+		var resultsMap = {};
+		for (i = 0; i < properties.length; ++i) {
+			if ((!searchInput || searchInput == properties[i].landlord) &&
+			    (!minRent || properties[i].rent >= minRent) &&
+			    (!maxRent || properties[i].rent <= maxRent) &&
+			    (!minOccupants || properties[i].occupants >= minOccupants) &&
+			    (!maxOccupants || properties[i].occupants <= maxOccupants)) { 
+				results.push(new Result(properties[i].imageURL, 0, properties[i].address + " Unit " + properties[i].unit, "See property", "PropertyDetails.html?id='" + properties[i].placeID + "'"));
+			}
+		}
+		loadReviews();	
+	});
 
     //TODO: PUT RETRIEVED DATA INTO PROPERTIES ARRAY
     properties = [{ title: "property 5", lat: 34.4133, lng: -119.8610 },
@@ -99,28 +123,22 @@ function getLandlordInformation(searchForm) {
     // SHOW NEW MARKERS
     showMarkers();
 
-    //RETREIVE YEARLY RATINGS 
-	// I think this might be better on landlord page
-    //landlordRatings = [ [2010, 3], [2011, 4], [2012, 5], [2013, 2], [2014, 3], [2015, 4], [2016, 4], [2017, 4.5], [2018, 4.3], [2019, 4.8] ];
-
-    //SHOW REVIEWS ELEMENTS
-    
     // Display dummy results
-    for(i = 0; i < 5; i++){
-        var reviewHTML = Mustache.render(resultTemplate, resultArray[i]);
-        document.getElementById("reviews").innerHTML += reviewHTML;
-    }
-    //CREATE GRAPH 
-    /*document.getElementById("graph").hidden = false;
-    document.getElementById("ratingsGraph").hidden = false;
-    google.charts.load('current', { packages: ['corechart', 'line'] });
-    google.charts.setOnLoadCallback(drawRatingsGraph);*/
-    //PLOT DATA
-    //drawRatingsGraph();
+    
 }
 
+var minRent = null;
+var maxRent = null;
+var minOccupants = null;
+var maxOccupants = null;
+
 function setFilters(){
-    //searchInput = document.getElementById("search-input").value;
+    minRent = null;
+	maxRent = null;
+	minOccupants = null;
+	maxOccupants = null; 
+		
+	searchInput = document.getElementById("landlord-dropdown").value;
 
     if(document.getElementById("min-rent").value != ''){
         minRent = document.getElementById("min-rent").value;
@@ -231,19 +249,20 @@ var type = queries[1];
 var value = queries[3];
 
 $(document).ready(function () {
-    var landlordDropdown = document.getElementById("landlord-dropdown");
-    for(i=0; i < landlords.length; i++){
-        var opt = landlords[i];
-        console.log(opt);
-        var optElement = document.createElement("option");
-        optElement.textContent = opt;
-        optElement.value = opt;
-        landlordDropdown.appendChild(optElement);
+    getLandlordsInfo().then(function(landlords){
+	var landlordDropdown = document.getElementById("landlord-dropdown");
+    	for (i = 0; i < landlords.length; i++){
+        	var optElement = document.createElement("option");
+        	optElement.textContent = landlords[i].name;
+        	optElement.value = landlords[i].id;
+        	landlordDropdown.appendChild(optElement);
     }
+	
+	});
 
-    var result = new Result("house9.jpg",5,"555 Storke Rd","UCSB Housing","https://www.rlwa.com/");
-    resultArray = [result,result,result,result,result];
-    console.log(resultArray);
+    //var result = new Result("house9.jpg",5,"555 Storke Rd","UCSB Housing","https://www.rlwa.com/");
+    //resultArray = [result,result,result,result,result];
+    //console.log(resultArray);
 
     myMap();
 });
