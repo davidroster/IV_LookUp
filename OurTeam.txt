@@ -1,0 +1,16 @@
+Our Team:
+
+Kari Whiteside:
+Built UI for landlords page, landlords detail page, and property page
+
+Ahsan Syed:
+Built UI for Add A Review page
+
+David Roster:
+Idea, prototyping, initial site design, and login page
+
+Marco Chavez:
+Maps page
+
+Scotty DeMoney:
+Firebase setup and integration into landlords and properties
