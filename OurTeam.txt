@@ -4,7 +4,7 @@ Kari Whiteside:
 Built UI for landlords page, landlords detail page, and property page
 
 Ahsan Syed:
-Built UI for Add A Review page
+Built UI for Add A Review page and made manual
 
 David Roster:
 Idea, prototyping, initial site design, and login page
