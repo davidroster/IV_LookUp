@@ -7,7 +7,7 @@ Ahsan Syed:
 Built UI for Add A Review page
 
 David Roster:
-Idea, prototyping, initial site design, and login page
+Idea, prototyping & XD design, initial site build, and login page
 
 Marco Chavez:
 Maps page
