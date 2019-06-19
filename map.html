@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <!-- <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <! <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Hello, world!</title> -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../favicon.ico">
+
+  <title>IV Lookup</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <!-- <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/"> -->
+
+  <!-- Bootstrap core CSS -->
+  <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="map-stylesheet.css" rel="stylesheet">
+  <!--fonts-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Custom styles for this template -->
+  <link href="justified-nav.css" rel="stylesheet">
+
+  <!-- icons library-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+  <div class="container">
+
+    <nav class="site-header sticky-top py-1">
+      <div class="container d-flex flex-column flex-md-row justify-content-between">
+        <a class="py-2" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="d-block mx-auto">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="14.31" y1="8" x2="20.05" y2="17.94"></line>
+            <line x1="9.69" y1="8" x2="21.17" y2="8"></line>
+            <line x1="7.38" y1="12" x2="13.12" y2="2.06"></line>
+            <line x1="9.69" y1="16" x2="3.95" y2="6.06"></line>
+            <line x1="14.31" y1="16" x2="2.83" y2="16"></line>
+            <line x1="16.62" y1="12" x2="10.88" y2="21.94"></line>
+          </svg>
+        </a>
+        <a class="py-2 d-none d-md-inline-block" href="index.html">Home <span class="sr-only">(current)</span></a>
+        <a class="py-2 d-none d-md-inline-block" href="map.html">Isla Vista Tour</a>
+        <a class="py-2 d-none d-md-inline-block" href="Landlords.html">Landlords</a>
+        <a class="py-2 d-none d-md-inline-block" href="AddAReview.html">Add a Review</a>
+        <a class="py-2 d-none d-md-inline-block" href="Support.html">Support</a>
+      </div>
+    </nav>
+
+    <div class="jumbotron">
+      <h1>Welcome to Maps!</h1>
+      <p class="lead">Here you can explore around Isla Vista and click on houses to learn more about them!
+      </p>
+    </div>
+
+    <div class="grid">
+      <!--  Map -->
+      <div class="column">
+        <div class="container ">
+          <div class="row ">
+            <div id="googleMap" class="map-container " style="width:100%;height:600px;"></div>
+          </div>
+          <div class="row">
+            <div id="graph" hidden>
+              <hr>
+              <div id="ratingsGraph" style="width: 900px; height: 300px;" hidden></div>
+              <hr>
+            </div>
+          </div>
+          <div class="review-block mt-1" id="reviews">
+          </div>
+        </div>
+
+      </div>
+      <!--  Sidebar Filter/Search bar-->
+      <div class="column sidebar rounded  ">
+        <div class="search-container">
+          <h5 class="mt-1" for="">Landlord Filter</h5>
+          <div class="input-group my-auto">
+            <select class="form-control" name="landlord-dropdown" id="landlord-dropdown">
+              <option value="choose landlord" disabled> Choose Landlord</option>
+            </select>
+          </div>
+          <div id="rent-filter">
+            <h5 class="mt-1" for="rent-filter"> Rent Filter</h5>
+            <div class="input-group  my-1 ">
+              <input class="form-control" type="text" id="min-rent" placeholder="Min Rent" name="minRent">
+              <input class="form-control" type="text" id="max-rent" placeholder="Max Rent" name="maxRent">
+            </div>
+          </div>
+          <div id="occupancy-filter">
+            <h5 class="mt-1" for="occupancy-filter">Occupants Filter</h5>
+            <div class="input-group my-1 ">
+              <input class="form-control" type="text" id="min-occupants" placeholder="Min Occup" name="minOccupants">
+              <input class="form-control" type="text" id="max-occupants" placeholder="Max Occup" name="maxOccupants">
+            </div>
+          </div>
+          <div >
+              <button class="btn btn-primary form-control my-2" id="submit-search-btn" type="button"
+                onclick="getLandlordInformation()">Submit Search</button>
+            </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
+
+    <!-- Graph Scripts-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3kze-eqtU9lAppo8qa87F7neRYzf6EZ8&callback=myMap&libraries=places"></script>
+
+    <!-- library to use templated html components-->
+    <script src="mustache.min.js"></script>
+
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
+
+	<!-- Add Firebase products that you want to use -->
+	<script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-database.js"></script>
+
+	<script>
+  	// Your web app's Firebase configuration
+  	var firebaseConfig = {
+    	apiKey: "AIzaSyDgEfoF32hR0nDplecl9fnzYRH0eyFqbhs",
+    	authDomain: "ivlookup.firebaseapp.com",
+    	databaseURL: "https://ivlookup.firebaseio.com",
+    	projectId: "ivlookup",
+    	storageBucket: "ivlookup.appspot.com",
+    	messagingSenderId: "402806144566",
+    	appId: "1:402806144566:web:60a7ec061f36ac51"
+  	};
+  	// Initialize Firebase
+  	firebase.initializeApp(firebaseConfig);
+	</script>
+
+	<script src="FirebaseTools.js" type="text/javascript"></script>
+	<script src="map-script.js" type="text/javascript"></script>
+</body>
+
+</html>
