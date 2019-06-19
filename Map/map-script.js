@@ -85,10 +85,10 @@ function getLandlordInformation(searchForm) {
     				var marker = new google.maps.Marker({ map: map, place: { placeId: results[0].place_id, location: results[0].geometry.location } });
 				}
 			});
-				
+
 		});
-	});  
-    
+	});
+
     setFilters();
     // CLEAR MARKERS ON MAP
     deleteMarkers();
@@ -106,11 +106,11 @@ function getLandlordInformation(searchForm) {
 			    (!minRent || properties[i].rent >= minRent) &&
 			    (!maxRent || properties[i].rent <= maxRent) &&
 			    (!minOccupants || properties[i].occupants >= minOccupants) &&
-			    (!maxOccupants || properties[i].occupants <= maxOccupants)) { 
+			    (!maxOccupants || properties[i].occupants <= maxOccupants)) {
 				results.push(new Result(properties[i].imageURL, 0, properties[i].address + " Unit " + properties[i].unit, "See property", "PropertyDetails.html?id='" + properties[i].placeID + "'"));
 			}
 		}
-		loadReviews();	
+		loadReviews();
 	});
 
     //TODO: PUT RETRIEVED DATA INTO PROPERTIES ARRAY
@@ -124,7 +124,7 @@ function getLandlordInformation(searchForm) {
     showMarkers();
 
     // Display dummy results
-    
+
 }
 
 var minRent = null;
@@ -136,8 +136,8 @@ function setFilters(){
     minRent = null;
 	maxRent = null;
 	minOccupants = null;
-	maxOccupants = null; 
-		
+	maxOccupants = null;
+
 	searchInput = document.getElementById("landlord-dropdown").value;
 
     if(document.getElementById("min-rent").value != ''){
@@ -257,7 +257,7 @@ $(document).ready(function () {
         	optElement.value = landlords[i].id;
         	landlordDropdown.appendChild(optElement);
     }
-	
+
 	});
 
     //var result = new Result("house9.jpg",5,"555 Storke Rd","UCSB Housing","https://www.rlwa.com/");

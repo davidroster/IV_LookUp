@@ -10,7 +10,7 @@
 function GenerateUnitList(units) {
     // Get original list item to clone
     var original = document.getElementById('unit-item');
-    
+
     // Iterate unit list, clone a list item for each, set its info, and append to list
     for (var i = 0; i < units.length; i++) {
 
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		var ids = Object.keys(properties);
 		for (var i = 0; i < ids.length; ++i) {
 			if (properties[ids[i]].placeID == placeID) {
-				document.getElementById('property-name').innerHTML = properties[ids[i]].address;	
+				document.getElementById('property-name').innerHTML = properties[ids[i]].address;
 				landlord = properties[ids[i]].landlord;
 				units.push(properties[ids[i]]);
 				if ('reviews' in properties[ids[i]]) {
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     //GenerateReviewList(PropertyReviews);
 
     // Set the landlord name
-    
+
     // SET RENT, DEPOSIT, BD/BR, UTILITIES, PARKING
     // SET reviews LIST
 

@@ -63,7 +63,7 @@
 .carousel-indicators{
     bottom: -30px;
 }
-  
+
 .carousel-control-prev-icon,
 .carousel-control-next-icon{
     background-color: dodgerblue;
@@ -79,7 +79,7 @@
     position: absolute;
     right: 0
 }
-  
+
 .no-padding{
     padding-left: 0;
     padding-right: 0;
@@ -88,4 +88,3 @@
 .property-caption {
     margin-bottom: 20%
 }
-

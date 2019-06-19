@@ -97,11 +97,11 @@ function generatePropertyList(propertyIDs) {
 
         // Give the new property item a unique id, set the image, and set the address
         clone_property_items[propertyIDs[i]] = clone_property_item;
-		clone_property_item.id = "property-item-" + i;	
-		getProperty(propertyIDs[i]).then(function(property) {	
+		clone_property_item.id = "property-item-" + i;
+		getProperty(propertyIDs[i]).then(function(property) {
         	clone_property_items[property.propertyID].querySelectorAll('[id="property-thumbnail"]')[0].src = property.imageURL;
         	clone_property_items[property.propertyID].querySelectorAll('[id="property-caption"]')[0].innerHTML = property.address;
-			clone_property_items[property.propertyID].querySelectorAll('[id="property-link"]')[0].href = "PropertyDetails.html?id='" + property.placeID + "'";	
+			clone_property_items[property.propertyID].querySelectorAll('[id="property-link"]')[0].href = "PropertyDetails.html?id='" + property.placeID + "'";
 		});
 
         if (i % 4 == 0) { // If i is a multiple of 4, append the new carousel item
@@ -119,7 +119,7 @@ function generatePropertyList(propertyIDs) {
     original_carousel_item.remove();
 }
 
-// Function to generate list of reviews 
+// Function to generate list of reviews
 function generateReviewList(reviewIDs) {
 
     // Get original rating to clone
@@ -141,7 +141,7 @@ function generateReviewList(reviewIDs) {
 
        		var date = new Date(review.date);
 			// Split date posted into day, month, year, and then combine them into a string
-			var diffStr = stringForTimeSince(date); 
+			var diffStr = stringForTimeSince(date);
 			var dateStr = monthOf(date) + ' ' + date.getDate() + ', ' + date.getFullYear();
         	// Set date posted and time since posted
         	clones[review.reviewID].querySelectorAll('[id="review-block-date"]')[0].innerHTML = dateStr + '<br />' + diffStr;
@@ -175,7 +175,7 @@ function generateReviewList(reviewIDs) {
     }
 
 	// Remove original (dummy) review
-    original_review.remove();	
+    original_review.remove();
 }
 
 function generateRatingsDistribution(ratings) {
@@ -211,7 +211,7 @@ function generateRatingsDistribution(ratings) {
    		document.getElementById(bars[i]).setAttribute("style", 'width: ' + percent_num + '%;');
    		// Set rating percentages
    		document.getElementById(nums[i]).innerHTML = percent_num + '%';
-	} 
+	}
 }
 
 // Obtain the landlord that was clicked from the URL
@@ -236,7 +236,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         document.getElementById('landlord-phone').innerHTML = landlord.phone;
         document.getElementById('landlord-address').innerHTML = landlord.address;
         document.getElementById('go-to-website').href = landlord.website;
-			
+
 		if ('properties' in landlord) {
 			var ids = Object.keys(landlord.properties);
 			// This is such a dumb way to do this... -Scotty
@@ -254,7 +254,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 	});
 
     // Generate list of reviews
-    //GenerateReviewList(reviews); 
+    //GenerateReviewList(reviews);
 	getLandlordReviews(landlord_id).then(function(reviewIDs){
 		generateReviewList(reviewIDs);
 	});

@@ -60,7 +60,7 @@ async function getLandlordRatings(landlordID) {
 		getLandlord(landlordID).then(function(landlord) {
 			var propertyPromises = [];
 			if ('properties' in landlord) {
-				Object.keys(landlord.properties).forEach(function(propertyID){	
+				Object.keys(landlord.properties).forEach(function(propertyID){
 					propertyPromises.push(new Promise(function(resolve, reject){
 						getProperty(propertyID).then(function(property){
 							var reviewPromises = [];
@@ -103,7 +103,7 @@ async function getPlaceRatings(placeID) {
 								resolve(review.rating);
 							});
 						}));
-					});	
+					});
 				}
 			});
 			Promise.all(reviewPromises).then(function(ratings){
@@ -118,7 +118,7 @@ async function getLandlordReviews(landlordID) {
 		getLandlord(landlordID).then(function(landlord) {
 			var propertyPromises = [];
 			if ('properties' in landlord) {
-				Object.keys(landlord.properties).forEach(function(propertyID){	
+				Object.keys(landlord.properties).forEach(function(propertyID){
 					propertyPromises.push(new Promise(function(resolve, reject){
 						getProperty(propertyID).then(function(property){
 							var reviewPromises = [];
@@ -159,7 +159,7 @@ function addProperty(placeID, address, unit, landlordID, occupancy, squareFoot, 
 
 	landlordsRef.child(landlordID).child("properties").child(propertyID).set(propertyID);
 	propertyIDsRef.child(propertyID).set(propertyID);
-	propertiesRef.child(propertyID).set(property);	
+	propertiesRef.child(propertyID).set(property);
 }
 
 function removeProperty(propertyID) {
@@ -198,7 +198,7 @@ async function getProperty(propertyID) {
 function addReview(propertyID, author, rating, title, text) {
 	var date = Date.now();
 	var reviewID = propertyID + '_' + date;
-	
+
 	var review = {
 			reviewID: reviewID,
 			propertyID: propertyID,
